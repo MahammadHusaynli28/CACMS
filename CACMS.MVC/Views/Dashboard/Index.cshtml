@@ -1,0 +1,55 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h1>Admin Dashboard</h1>
+
+<div class="row">
+    <div class="col-md-2 mb-3">
+        <div class="card card-stat">
+            <h5>Total Events</h5>
+            <div class="number">@ViewData["TotalEvents"]</div>
+        </div>
+    </div>
+    <div class="col-md-2 mb-3">
+        <div class="card card-stat">
+            <h5>Total Invitations</h5>
+            <div class="number">@ViewData["TotalInvitations"]</div>
+        </div>
+    </div>
+    <div class="col-md-2 mb-3">
+        <div class="card card-stat">
+            <h5>Accepted</h5>
+            <div class="number" style="color: #28a745;">@ViewData["AcceptedInvitations"]</div>
+        </div>
+    </div>
+    <div class="col-md-2 mb-3">
+        <div class="card card-stat">
+            <h5>Rejected</h5>
+            <div class="number" style="color: #dc3545;">@ViewData["RejectedInvitations"]</div>
+        </div>
+    </div>
+    <div class="col-md-2 mb-3">
+        <div class="card card-stat">
+            <h5>Today's Events</h5>
+            <div class="number">@ViewData["TodayEvents"]</div>
+        </div>
+    </div>
+    <div class="col-md-2 mb-3">
+        <div class="card card-stat">
+            <h5>Participants</h5>
+            <div class="number" style="color: #007bff;">@ViewData["TotalParticipants"]</div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-12">
+        <h3>Admin Links</h3>
+        <ul class="list-group">
+            <li class="list-group-item"><a href="/Location/Index">Manage Locations</a></li>
+            <li class="list-group-item"><a href="/EventType/Index">Manage Event Types</a></li>
+            <li class="list-group-item"><a href="/Event/Index">View All Events</a></li>
+        </ul>
+    </div>
+</div>

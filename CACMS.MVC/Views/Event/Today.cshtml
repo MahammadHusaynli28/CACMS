@@ -1,0 +1,33 @@
+@model IEnumerable<ListEventDTO>
+@{
+    ViewData["Title"] = "Today's Events";
+}
+
+<h1>Today's Events</h1>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Title</h5>
+                    <p class="card-text">
+                        <strong>Time:</strong> @item.Date.ToString("t")<br />
+                        <strong>Location:</strong> @item.LocationName
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">View</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        No events today.
+    </div>
+}

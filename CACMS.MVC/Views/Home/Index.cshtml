@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron bg-light p-5 rounded-lg m-3">
+            <h1 class="display-4">Welcome to CACMS</h1>
+            <p class="lead">Conference Academy Conference Management System</p>
+            <hr class="my-4">
+            <p>Manage your events, invitations, and participants efficiently.</p>
+            @if (!User.Identity?.IsAuthenticated ?? false)
+            {
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="/Account/Login" role="button">Login</a>
+                    <a class="btn btn-success btn-lg" href="/Account/Register" role="button">Register</a>
+                </p>
+            }
+            else
+            {
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="/Event/Index" role="button">Browse Events</a>
+                    <a class="btn btn-success btn-lg" href="/Invitation/Index" role="button">My Invitations</a>
+                </p>
+                @if (User.IsInRole("Organizer"))
+                {
+                    <a class="btn btn-info btn-lg" href="/Event/MyEvents" role="button">My Events</a>
+                }
+                @if (User.IsInRole("Admin"))
+                {
+                    <a class="btn btn-warning btn-lg" href="/Dashboard/Index" role="button">Dashboard</a>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Events</h5>
+                <p class="card-text">Browse and discover upcoming conferences and events.</p>
+                <a href="/Event/Index" class="btn btn-sm btn-primary">View Events</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Invitations</h5>
+                <p class="card-text">Manage your event invitations and check-ins.</p>
+                <a href="/Invitation/Index" class="btn btn-sm btn-primary">View Invitations</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Organize</h5>
+                <p class="card-text">Create and manage your own events.</p>
+                <a href="/Event/Create" class="btn btn-sm btn-primary">Create Event</a>
+            </div>
+        </div>
+    </div>
+</div>
+

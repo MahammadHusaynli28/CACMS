@@ -1,0 +1,54 @@
+@model UpdateEventDTO
+@{
+    ViewData["Title"] = "Edit Event";
+}
+
+<h1>Edit Event</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <form method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input type="text" class="form-control" asp-for="Title" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" rows="4" asp-for="Description"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Date</label>
+                    <input type="datetime-local" class="form-control" asp-for="Date" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Capacity</label>
+                    <input type="number" class="form-control" asp-for="Capacity" />
+                    <span asp-validation-for="Capacity" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Location</label>
+                    <select class="form-control" asp-for="LocationId" asp-items="@(new SelectList((IEnumerable<ListLocationDTO>)ViewData["Locations"], "Id", "Name"))">
+                        <option value="">Select Location</option>
+                    </select>
+                    <span asp-validation-for="LocationId" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Event Type</label>
+                    <select class="form-control" asp-for="EventTypeId" asp-items="@(new SelectList((IEnumerable<ListEventTypeDTO>)ViewData["EventTypes"], "Id", "Name"))">
+                        <option value="">Select Event Type</option>
+                    </select>
+                    <span asp-validation-for="EventTypeId" class="text-danger"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a asp-action="MyEvents" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>

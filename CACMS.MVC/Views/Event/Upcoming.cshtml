@@ -1,0 +1,36 @@
+@model IEnumerable<ListEventDTO>
+@{
+    ViewData["Title"] = "Upcoming Events";
+}
+
+<h1>Upcoming Events</h1>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Title</h5>
+                    <p class="card-text">
+                        <small>
+                            <strong>Date:</strong> @item.Date.ToString("g")<br />
+                            <strong>Location:</strong> @item.LocationName<br />
+                            <strong>Type:</strong> @item.EventTypeName
+                        </small>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">View</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        No upcoming events.
+    </div>
+}

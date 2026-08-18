@@ -1,0 +1,63 @@
+@model GetInvitationDTO
+@{
+    ViewData["Title"] = "Invitation Details";
+}
+
+<h1>Invitation Details</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5>@Model.EventTitle</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Date:</strong> @Model.EventDate.ToString("g")</p>
+                <p><strong>Location:</strong> @Model.LocationName</p>
+                <p><strong>From:</strong> @Model.PersonName</p>
+                <p><strong>Status:</strong> 
+                    <span class="badge bg-@(Model.Status == "Pending" ? "warning" : Model.Status == "Accepted" ? "success" : "danger")">
+                        @Model.Status
+                    </span>
+                </p>
+                <p><strong>Sent:</strong> @Model.SentAt.ToString("g")</p>
+                @if (Model.HasParticipation)
+                {
+                    <hr />
+                    <h6>Check-In Information</h6>
+                    <p><strong>Seat:</strong> @Model.SeatNumber</p>
+                    <p><strong>Check-In Time:</strong> @(Model.CheckInTime?.ToString("g") ?? "Not checked in")</p>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        @if (Model.Status == "Pending")
+        {
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" asp-action="Accept">
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        <button type="submit" class="btn btn-success w-100 mb-2">Accept Invitation</button>
+                    </form>
+                    <form method="post" asp-action="Reject">
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        <button type="submit" class="btn btn-danger w-100">Reject Invitation</button>
+                    </form>
+                </div>
+            </div>
+        }
+        @if (Model.Status == "Accepted" && !Model.HasParticipation)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" asp-action="CheckIn">
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        <button type="submit" class="btn btn-primary w-100">Check In</button>
+                    </form>
+                </div>
+            </div>
+        }
+        <a asp-action="Index" class="btn btn-secondary w-100 mt-3">Back to Invitations</a>
+    </div>
+</div>

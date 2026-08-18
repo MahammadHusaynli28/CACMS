@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="CACMS.BLL/CACMS.BLL.csproj" />
+  <Project Path="CACMS.DAL/CACMS.DAL.csproj" />
+  <Project Path="CACMS.MVC/CACMS.MVC.csproj" />
+</Solution>

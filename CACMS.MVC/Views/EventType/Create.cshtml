@@ -1,0 +1,20 @@
+@model CreateEventTypeDTO
+@{
+    ViewData["Title"] = "Create Event Type";
+}
+
+<h1>Add New Event Type</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" asp-for="Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
